@@ -1,4 +1,4 @@
-from hex.core.Application import ForReadingSpriteFiles
+from hex.core.port import ForReadingSpriteFiles
 from hex.core.SpriteLoader import SpriteLoader
 
 class Test_SpriteLoader:

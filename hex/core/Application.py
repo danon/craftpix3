@@ -1,22 +1,9 @@
-from abc import ABC, abstractmethod
-
-class ForControlling(ABC):
-    @abstractmethod
-    def resource_root(self) -> str:
-        pass
-
-class ForReadingSpriteFiles(ABC):
-    @abstractmethod
-    def root(self) -> str:
-        pass
-
-    @abstractmethod
-    def list_files(self, path: str) -> list[str]:
-        pass
+from hex.core.port import ForControlling, ForReadingSpriteFiles
+from hex.core.SpriteLoader import SpriteLoader
 
 class Application(ForControlling):
     def __init__(self, fs: ForReadingSpriteFiles):
-        self.__fs = fs
+        self.__loader = SpriteLoader(fs)
 
-    def resource_root(self) -> str:
-        return self.__fs.root()
+    def frames(self) -> list[str]:
+        return self.__loader.sprite('/sprite').frames

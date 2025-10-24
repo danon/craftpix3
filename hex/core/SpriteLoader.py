@@ -1,4 +1,4 @@
-from hex.core.Application import ForReadingSpriteFiles
+from hex.core.port import ForReadingSpriteFiles
 
 class Sprite:
     def __init__(self, frames: list[str]):
