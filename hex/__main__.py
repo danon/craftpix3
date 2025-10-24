@@ -1,9 +1,12 @@
+import os.path
+
 from hex.CliTerminal import CliTerminal
 from hex.core.Application import Application
 from hex.OsFileSystem import OsFileSystem
 
 def main():
-    app = Application(OsFileSystem())
+    root = os.path.dirname(os.path.dirname(__file__))
+    app = Application(OsFileSystem(root))
     CliTerminal(app).print()
 
 if __name__ == '__main__':

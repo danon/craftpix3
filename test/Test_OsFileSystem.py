@@ -5,5 +5,5 @@ class Test_OsFileSystem:
     def test_lists_files_from_directory(self):
         with directory() as dir:
             dir.touch('a/b/c/file.png')
-            files = OsFileSystem().list_files(dir.join('a/b'))
+            files = OsFileSystem(dir.join()).list_files('a/b')
             assert files == ['file.png']
