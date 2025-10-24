@@ -6,4 +6,4 @@ class Application(ForControlling):
         self.__loader = SpriteLoader(fs)
 
     def frames(self) -> list[str]:
-        return self.__loader.sprite('/sprite').frames
+        return self.__loader.sprite('resource').frames

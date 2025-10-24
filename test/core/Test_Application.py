@@ -6,8 +6,8 @@ def test():
         'frame1.png', 'frame2.png'
     ]))
     assert application.frames() == [
-        '/sprite/frame1.png',
-        '/sprite/frame2.png',
+        'resource/frame1.png',
+        'resource/frame2.png',
     ]
 
 class FakeFileSystem(ForReadingSpriteFiles):
