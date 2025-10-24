@@ -12,7 +12,6 @@ if __name__ == '__main__':
 # TODO
 # - app tells the fs to load files in /path
 # - OsFs loads returns paths in folder
-# - sprite loader presents the paths
 # - pygame accepts mouse click and directs it to the game,
 #     to initiate the game element
 # - game ticks and updates the element

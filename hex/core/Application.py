@@ -10,6 +10,10 @@ class ForReadingSpriteFiles(ABC):
     def root(self) -> str:
         pass
 
+    @abstractmethod
+    def list_files(self, path: str) -> list[str]:
+        pass
+
 class Application(ForControlling):
     def __init__(self, fs: ForReadingSpriteFiles):
         self.__fs = fs
