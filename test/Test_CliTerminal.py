@@ -11,5 +11,8 @@ class FakeControls(ForControlling):
     def __init__(self, frames: list[str]):
         self.__frames = frames
 
+    def click(self):
+        pass
+
     def frames(self) -> list[str]:
         return self.__frames
