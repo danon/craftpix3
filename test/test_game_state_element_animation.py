@@ -1,5 +1,5 @@
 from pix.game.state import Element, GameState
-from pix.sprite import Sprite
+from pix.game.sprite import Sprite
 
 def test_element_has_first_frame():
     game = GameState()

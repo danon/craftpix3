@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pix.sprite import Sprite
+from pix.game.sprite import Sprite
 
 class GameState:
     def __init__(self):

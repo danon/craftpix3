@@ -1,4 +1,4 @@
-from pix.sprite import Sprite
+from pix.game.sprite import Sprite
 
 def test_sprite_returns_frame():
     sprite = Sprite(['frame1.png'])
