@@ -8,3 +8,13 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# TODO
+# - app tells the fs to load files in /path
+# - OsFs loads returns paths in folder
+# - sprite loader presents the paths
+# - pygame accepts mouse click and directs it to the game,
+#     to initiate the game element
+# - game ticks and updates the element
+# - pygame renders background and the frame of the element
+# - quit game
