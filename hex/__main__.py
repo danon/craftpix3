@@ -1,6 +1,5 @@
 import os.path
 
-from hex.CliTerminal import CliTerminal
 from hex.core.Application import Application
 from hex.core.GameLoop import GameLoop
 from hex.OsFileSystem import OsFileSystem
@@ -13,8 +12,7 @@ def main(test_mode: bool):
     engine = PygameEngine()
     app = Application(
         PygameWindow(engine),
-        OsFileSystem(root),
-        CliTerminal())
+        OsFileSystem(root))
     controller = PygameController(engine)
     loop = GameLoop(controller, app)
     loop.tick()
