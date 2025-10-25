@@ -1,6 +1,6 @@
 from hex.core.GameLoop import GameLoop
 from hex.core.port import ForReadingUserInput, ForRunningGame, WindowEvent
-from hex.QuitAfterPolls import QuitAfterPolls
+from test.core.QuitAfterPolls import QuitAfterPolls
 
 def test_game_loop__does_not_tick():
     game = TickCountingGame()

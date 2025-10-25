@@ -7,20 +7,23 @@ from hex.OsFileSystem import OsFileSystem
 from hex.PygameController import PygameController
 from hex.PygameEngine import PygameEngine
 from hex.PygameWindow import PygameWindow
-from hex.QuitAfterPolls import QuitAfterPolls
 
-def main():
+def main(test_mode: bool):
     root = os.path.dirname(os.path.dirname(__file__))
     engine = PygameEngine()
     app = Application(
         PygameWindow(engine),
         OsFileSystem(root),
         CliTerminal())
-    PygameController(engine)
-    GameLoop(QuitAfterPolls(50), app).start()
+    controller = PygameController(engine)
+    loop = GameLoop(controller, app)
+    loop.tick()
+    if test_mode:
+        engine.close()
+    loop.start()
 
 if __name__ == '__main__':
-    main()
+    main(False)
 
 # TODO
 # - game updates the element
