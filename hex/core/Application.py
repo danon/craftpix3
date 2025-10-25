@@ -1,4 +1,4 @@
-from hex.core.Color import Color
+from hex.core.Color import DARK_GRAY
 from hex.core.Obstacle import Obstacle
 from hex.core.port import ForReadingSpriteFiles, ForRenderingView, ForRunningGame
 from hex.core.SpriteLoader import SpriteLoader
@@ -182,8 +182,7 @@ class Application(ForRunningGame):
             effect.tick()
         for common in self.__boss_common:
             common.tick()
-        self.__window.fill_background(Color(30, 31, 34))
-
+        self.__window.fill_background(DARK_GRAY)
         self.__window.draw_frame(self.__loader.abs_path(self.__current_obstacle().frame()), 0, 128)
         self.__window.draw_frame(self.__loader.abs_path(self.__current_magic_effect().frame()), 0, 512 - 128)
         self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(0).frame()), 0, -64 + 512)

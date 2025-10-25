@@ -1,12 +1,12 @@
 from hex.core.Application import Application
-from hex.core.Color import Color
+from hex.core.Color import Color, DARK_GRAY
 from hex.core.port import ForReadingSpriteFiles, ForRenderingFrames, ForRenderingView, ForRunningGame
 
 def test_on_tick_renders_background():
     window = SpyWindow()
     game: ForRunningGame = Application(window, dummy_file_system())
     game.tick()
-    assert window.background == Color(30, 31, 34)
+    assert window.background == DARK_GRAY
 
 def test_on_first_tick_renders_first_frame():
     spy = SpyWindow()

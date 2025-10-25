@@ -6,6 +6,7 @@ from pygame.event import Event
 from pygame.time import Clock
 
 from hex.core.Color import Color
+from hex.core.Rect import Rect
 
 class PygameEngine:
     def __init__(self, width: int, height: int, test_mode: bool):
@@ -46,3 +47,10 @@ class PygameEngine:
 
     def stop(self):
         pygame.quit()
+
+    def draw_rect(self, rect: Rect, color: Color):
+        pygame.draw.rect(
+            self.screen,
+            (color.r, color.g, color.b),
+            pygame.Rect(rect.left, rect.top, rect.width, rect.height),
+            1)
