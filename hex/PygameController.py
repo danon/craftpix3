@@ -1,16 +1,17 @@
 import pygame
 
-from hex.core.port import ForControlling
+from hex.core.port import ForReadingUserInput, WindowEvent
 from hex.PygameEngine import PygameEngine
 
-class PygameController:
-    def __init__(self, engine: PygameEngine, controls: ForControlling):
+class PygameController(ForReadingUserInput):
+    def __init__(self, engine: PygameEngine):
         self.__engine = engine
-        self.__controls = controls
 
-    def send_controls(self):
+    def poll_events(self) -> list[WindowEvent]:
+        events = []
         for event in self.__engine.poll_events():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.__controls.click()
+                events.append(WindowEvent.Click)
             if event.type == pygame.QUIT:
-                self.__controls.close()
+                events.append(WindowEvent.Close)
+        return events

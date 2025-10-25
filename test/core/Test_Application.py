@@ -1,20 +1,23 @@
 from hex.core.Application import Application
 from hex.core.Color import Color
-from hex.core.port import ForControlling, ForReadingSpriteFiles, ForRenderingView
+from hex.core.port import ForReadingSpriteFiles, ForReadingUserInput, ForRenderingView, ForRunningGame, WindowEvent
 
 def test():
-    application: ForControlling = Application(SpyWindow(), FakeFileSystem([
+    game: ForRunningGame = Application(SpyWindow(), FakeFileSystem([
         'frame1.png', 'frame2.png'
-    ]))
-    assert application.frames() == [
+    ]), WindowEvents([]))
+    assert game.frames() == [
         'resource/frame1.png',
         'resource/frame2.png',
     ]
 
 def test_clicking_renders_background():
     window = SpyWindow()
-    application: ForControlling = Application(window, FakeFileSystem([]))
-    application.click()
+    game: ForRunningGame = Application(
+        window,
+        FakeFileSystem([]),
+        WindowEvents([WindowEvent.Click]))
+    game.tick()
     assert window.background == Color(30, 31, 34)
 
 class SpyWindow(ForRenderingView):
@@ -33,3 +36,10 @@ class FakeFileSystem(ForReadingSpriteFiles):
 
     def root(self) -> str:
         return '/root'
+
+class WindowEvents(ForReadingUserInput):
+    def __init__(self, events: list[WindowEvent]):
+        self.__events = events
+
+    def poll_events(self) -> list[WindowEvent]:
+        return self.__events

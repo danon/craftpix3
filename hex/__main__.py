@@ -11,8 +11,10 @@ def main():
     root = os.path.dirname(os.path.dirname(__file__))
     engine = PygameEngine()
     window = PygameWindow(engine)
-    app = Application(window, OsFileSystem(root))
-    PygameController(engine, app).send_controls()
+    app = Application(
+        window,
+        OsFileSystem(root),
+        PygameController(engine))
     CliTerminal(app).print()
 
 if __name__ == '__main__':

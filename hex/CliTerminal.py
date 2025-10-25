@@ -1,8 +1,8 @@
-from hex.core.port import ForControlling
+from hex.core.port import ForRunningGame
 
 class CliTerminal:
-    def __init__(self, controls: ForControlling):
-        self.__controls = controls
+    def __init__(self, game: ForRunningGame):
+        self.__game = game
 
     def print(self):
-        print(self.__controls.frames())
+        print(self.__game.frames())
