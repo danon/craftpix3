@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from hex.core.Color import Color
+
 class ForControlling(ABC):
     @abstractmethod
     def click(self):
@@ -20,5 +22,5 @@ class ForReadingSpriteFiles(ABC):
 
 class ForRenderingView(ABC):
     @abstractmethod
-    def fill_background(self, r: int, g: int, b: int):
+    def fill_background(self, color: Color):
         pass
