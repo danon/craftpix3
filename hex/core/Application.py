@@ -37,7 +37,9 @@ class Application(ForRunningGame):
         items = ['arrow', 'coin', 'crystal', 'heart', 'hit_point', 'star']
         self.__collectibles = [
             [
-                Collectible(self.__loader.sprite(f'collect/{family}/{item}'))
+                Collectible(
+                    self.__loader.sprite(f'collect/{family}/{item}'),
+                    idle=32)
                 for item in items
             ]
             for family in families
