@@ -8,6 +8,8 @@ class OsFileSystem(ForReadingSpriteFiles):
 
     def list_files(self, path: str) -> list[str]:
         directory = os.path.join(self.__root, path)
+        if not os.path.exists(directory):
+            raise Exception('Directory does not exist: ' + path)
         result = []
         for subdir, dirs, files in os.walk(directory):
             for file in files:
