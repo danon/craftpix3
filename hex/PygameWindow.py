@@ -15,4 +15,4 @@ class PygameWindow(ForRenderingView):
         self.__engine.screen.blit(pygame.image.load(path), (0, 0))
 
     def render_finish(self):
-        pass
+        self.__engine.flip()

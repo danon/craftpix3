@@ -7,9 +7,17 @@ from pygame.event import Event
 from hex.core.Color import Color
 
 class PygameEngine:
-    def __init__(self):
+    def __init__(self, test_mode: bool):
+        self.__test_mode = test_mode
         pygame.init()
-        self.screen = Surface((640, 480))
+        if test_mode:
+            self.screen = Surface((640, 480))
+        else:
+            self.screen = pygame.display.set_mode((640, 480))
+
+    def flip(self):
+        if not self.__test_mode:
+            pygame.display.flip()
 
     def pixel_color(self, x: int, y: int) -> Color:
         color = self.screen.get_at((x, y))
