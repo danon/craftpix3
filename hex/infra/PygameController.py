@@ -1,7 +1,7 @@
 import pygame
 
 from hex.core.port import ForReadingUserInput, WindowEvent
-from hex.PygameEngine import PygameEngine
+from hex.infra.PygameEngine import PygameEngine
 
 class PygameController(ForReadingUserInput):
     def __init__(self, engine: PygameEngine):

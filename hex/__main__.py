@@ -2,10 +2,10 @@ import os.path
 
 from hex.core.Application import Application
 from hex.core.GameLoop import GameLoop
-from hex.OsFileSystem import OsFileSystem
-from hex.PygameController import PygameController
-from hex.PygameEngine import PygameEngine
-from hex.PygameWindow import PygameWindow
+from hex.infra.OsFileSystem import OsFileSystem
+from hex.infra.PygameController import PygameController
+from hex.infra.PygameEngine import PygameEngine
+from hex.infra.PygameWindow import PygameWindow
 
 def main(test_mode: bool):
     root = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'resource')

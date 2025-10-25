@@ -1,4 +1,4 @@
-from hex.OsFileSystem import OsFileSystem
+from hex.infra.OsFileSystem import OsFileSystem
 from test.helper.directory import directory
 
 def test_lists_files_from_directory():

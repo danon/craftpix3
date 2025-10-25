@@ -2,7 +2,7 @@ from typing import Generator
 
 from pytest import fixture
 
-from hex.PygameEngine import PygameEngine
+from hex.infra.PygameEngine import PygameEngine
 
 @fixture
 def engine() -> Generator[PygameEngine]:

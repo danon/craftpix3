@@ -1,6 +1,6 @@
 from hex.core.port import WindowEvent
-from hex.PygameController import PygameController
-from hex.PygameEngine import PygameEngine
+from hex.infra.PygameController import PygameController
+from hex.infra.PygameEngine import PygameEngine
 
 def test_polls_empty(engine: PygameEngine):
     controller = PygameController(engine)

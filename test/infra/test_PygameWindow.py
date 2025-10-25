@@ -1,7 +1,7 @@
 from hex.core.Color import Color
 from hex.core.port import ForRenderingView
-from hex.PygameEngine import PygameEngine
-from hex.PygameWindow import PygameWindow
+from hex.infra.PygameEngine import PygameEngine
+from hex.infra.PygameWindow import PygameWindow
 from test.helper.resource import resource
 
 res = resource(__file__)
