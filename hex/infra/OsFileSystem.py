@@ -10,11 +10,11 @@ class OsFileSystem(ForReadingSpriteFiles):
         directory = os.path.join(self.__root, path)
         if not os.path.exists(directory):
             raise Exception('Directory does not exist: ' + path)
-        result = []
-        for subdir, dirs, files in os.walk(directory):
-            for file in files:
-                result.append(file)
-        return result
+        children = os.listdir(directory)
+        for child in children:
+            if os.path.isdir(os.path.join(directory, child)):
+                raise Exception('Expected a file in sprite directory, found: ' + path + '/' + child)
+        return children
 
     def root(self) -> str:
         return self.__root
