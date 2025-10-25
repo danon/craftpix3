@@ -3,16 +3,6 @@ from hex.core.Color import Color
 from hex.core.port import ForReadingSpriteFiles, ForRenderingFrames, ForRenderingView, ForRunningGame
 from hex.NoRender import NoRender
 
-def test_renders_frame_from_file_system():
-    game: ForRunningGame = Application(
-        SpyWindow(),
-        FakeFileSystem(['frame1.png', 'frame2.png']),
-        NoRender())
-    assert game.frames() == [
-        'resource/frame1.png',
-        'resource/frame2.png',
-    ]
-
 def test_on_tick_renders_background():
     window = SpyWindow()
     game: ForRunningGame = Application(window, FakeFileSystem([]), NoRender())
@@ -21,9 +11,12 @@ def test_on_tick_renders_background():
 
 def test_on_tick_renders_frame():
     spy = SpyRender()
-    game: ForRunningGame = Application(SpyWindow(), FakeFileSystem(['frame1.png']), spy)
+    game: ForRunningGame = Application(
+        SpyWindow(),
+        FakeFileSystem(['frame1.png', 'frame2.png']),
+        spy)
     game.tick()
-    assert spy.frames == ['resource/frame1.png']
+    assert spy.frames == ['resource/frame1.png', 'resource/frame2.png']
 
 class SpyWindow(ForRenderingView):
     def __init__(self):

@@ -12,10 +12,6 @@ class ForRunningGame(ABC):
     def click(self):
         pass
 
-    @abstractmethod
-    def frames(self) -> list[str]:
-        pass
-
 class WindowEvent(Enum):
     Close = 1
     Click = 2

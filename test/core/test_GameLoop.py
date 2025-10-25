@@ -33,9 +33,6 @@ class ClickCountingGame(ForRunningGame):
     def tick(self):
         pass
 
-    def frames(self) -> list[str]:
-        return []
-
 class TickCountingGame(ForRunningGame):
     def __init__(self):
         self.ticks = 0
@@ -45,9 +42,6 @@ class TickCountingGame(ForRunningGame):
 
     def click(self):
         pass
-
-    def frames(self) -> list[str]:
-        return []
 
 class FakeInput(ForReadingUserInput):
     def poll_events(self) -> list[WindowEvent]:
