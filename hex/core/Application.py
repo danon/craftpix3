@@ -12,11 +12,11 @@ class Application(ForRunningGame):
             Obstacle(self.__loader.sprite('obstacle/asid_drop')),
             Obstacle(self.__loader.sprite('obstacle/axe')),
             Obstacle(self.__loader.sprite('obstacle/bomb')),
+            Obstacle(self.__loader.sprite('obstacle/chest')),
             Obstacle(self.__loader.sprite('obstacle/fire_skull')),
             Obstacle(self.__loader.sprite('obstacle/ghost_bottle')),
             Obstacle(self.__loader.sprite('obstacle/guillotine')),
             Obstacle(self.__loader.sprite('obstacle/lightning')),
-            Obstacle(self.__loader.sprite('obstacle/mimik')),
             Obstacle(self.__loader.sprite('obstacle/ram')),
             Obstacle(self.__loader.sprite('obstacle/stone1')),
             Obstacle(self.__loader.sprite('obstacle/stone2')),
@@ -25,18 +25,27 @@ class Application(ForRunningGame):
             Obstacle(self.__loader.sprite('obstacle/trap')),
             Obstacle(self.__loader.sprite('obstacle/web')),
         ]
-        self.__obstacle = self.__obstacles[6]
+        self.__obstacle_index = 6
 
     def tick(self):
         for element in self.__obstacles:
             element.tick()
         self.__window.fill_background(Color(30, 31, 34))
         self.__window.draw_frame(
-            self.__loader.abs_path(self.__obstacle.frame())
+            self.__loader.abs_path(self.__current_obstacle().frame())
         )
         self.__window.render_finish()
         self.__ticks += 1
 
+    def __current_obstacle(self) -> Obstacle:
+        return self.__obstacles[self.__obstacle_index]
+
     def click(self):
         for element in self.__obstacles:
             element.initiate()
+
+    def left(self):
+        self.__obstacle_index -= 1
+
+    def right(self):
+        self.__obstacle_index = (self.__obstacle_index + 1) % len(self.__obstacles)

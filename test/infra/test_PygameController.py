@@ -18,3 +18,13 @@ def test_polls_close(engine: PygameEngine):
     engine.close()
     [event] = controller.poll_events()
     assert event == WindowEvent.Close
+
+def test_polls_arrows(engine: PygameEngine):
+    controller = PygameController(engine)
+    engine.right()
+    engine.left()
+    events = controller.poll_events()
+    assert events == [
+        WindowEvent.Right,
+        WindowEvent.Left,
+    ]

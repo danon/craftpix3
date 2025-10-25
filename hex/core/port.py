@@ -12,9 +12,19 @@ class ForRunningGame(ABC):
     def click(self):
         pass
 
+    @abstractmethod
+    def right(self):
+        pass
+
+    @abstractmethod
+    def left(self):
+        pass
+
 class WindowEvent(Enum):
     Close = 1
     Click = 2
+    Right = 3
+    Left = 4
 
 class ForReadingUserInput(ABC):
     @abstractmethod

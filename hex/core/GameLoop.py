@@ -20,3 +20,7 @@ class GameLoop:
                 self.__is_running = False
             if event == WindowEvent.Click:
                 self.__game.click()
+            if event == WindowEvent.Left:
+                self.__game.left()
+            if event == WindowEvent.Right:
+                self.__game.right()

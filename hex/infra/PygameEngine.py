@@ -29,6 +29,12 @@ class PygameEngine:
     def click(self):
         pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN))
 
+    def right(self):
+        pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_RIGHT}))
+
+    def left(self):
+        pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_LEFT}))
+
     def close(self):
         pygame.event.post(pygame.event.Event(pygame.QUIT))
 

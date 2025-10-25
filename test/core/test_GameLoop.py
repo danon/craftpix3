@@ -19,16 +19,27 @@ def test_game_loop_ticks__until_is_quit():
     assert game.ticks == 3
 
 def test_game_loop_directs_click_to_game():
-    game = ClickCountingGame()
+    game = EventStoringGame()
     GameLoop(WindowEvents([WindowEvent.Click]), game).tick()
-    assert game.clicks == 1
+    assert game.events == ['click']
 
-class ClickCountingGame(ForRunningGame):
+def test_game_loop_directs_arrows_to_game():
+    game = EventStoringGame()
+    GameLoop(WindowEvents([WindowEvent.Right, WindowEvent.Left]), game).tick()
+    assert game.events == ['right', 'left']
+
+class EventStoringGame(ForRunningGame):
     def __init__(self):
-        self.clicks = 0
+        self.events = []
+
+    def left(self):
+        self.events.append('left')
+
+    def right(self):
+        self.events.append('right')
 
     def click(self):
-        self.clicks += 1
+        self.events.append('click')
 
     def tick(self):
         pass
@@ -41,6 +52,12 @@ class TickCountingGame(ForRunningGame):
         self.ticks += 1
 
     def click(self):
+        pass
+
+    def left(self):
+        pass
+
+    def right(self):
         pass
 
 class FakeInput(ForReadingUserInput):

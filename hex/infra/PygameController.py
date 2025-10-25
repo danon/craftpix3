@@ -14,4 +14,9 @@ class PygameController(ForReadingUserInput):
                 events.append(WindowEvent.Click)
             if event.type == pygame.QUIT:
                 events.append(WindowEvent.Close)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    events.append(WindowEvent.Right)
+                if event.key == pygame.K_LEFT:
+                    events.append(WindowEvent.Left)
         return events
