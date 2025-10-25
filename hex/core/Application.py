@@ -1,5 +1,5 @@
 from hex.core.Color import Color
-from hex.core.obstacle import Obstacle
+from hex.core.Obstacle import Obstacle
 from hex.core.port import ForReadingSpriteFiles, ForRenderingView, ForRunningGame
 from hex.core.SpriteLoader import SpriteLoader
 
@@ -9,14 +9,20 @@ class Application(ForRunningGame):
         self.__loader = SpriteLoader(fs)
         self.__ticks = 0
         self.__obstacles = [
-            Obstacle(self.__loader.sprite('obstacle/asid_drop')),
+            Obstacle(self.__loader.sprite('obstacle/lightning')),
+            Obstacle(self.__loader.sprite('obstacle/asid_drop/tube')),
+            Obstacle(self.__loader.sprite('obstacle/asid_drop/drop')),
+            Obstacle(self.__loader.sprite('obstacle/asid_drop/blob')),
             Obstacle(self.__loader.sprite('obstacle/axe')),
             Obstacle(self.__loader.sprite('obstacle/bomb')),
             Obstacle(self.__loader.sprite('obstacle/chest')),
-            Obstacle(self.__loader.sprite('obstacle/fire_skull')),
+            Obstacle(self.__loader.sprite('obstacle/fire_skull/skull')),
+            Obstacle(self.__loader.sprite('obstacle/fire_skull/fire1')),
+            Obstacle(self.__loader.sprite('obstacle/fire_skull/fire2')),
+            Obstacle(self.__loader.sprite('obstacle/fire_skull/fire3')),
+            Obstacle(self.__loader.sprite('obstacle/fire_skull/fire4')),
             Obstacle(self.__loader.sprite('obstacle/ghost_bottle')),
             Obstacle(self.__loader.sprite('obstacle/guillotine')),
-            Obstacle(self.__loader.sprite('obstacle/lightning')),
             Obstacle(self.__loader.sprite('obstacle/ram')),
             Obstacle(self.__loader.sprite('obstacle/stone1')),
             Obstacle(self.__loader.sprite('obstacle/stone2')),
@@ -25,7 +31,7 @@ class Application(ForRunningGame):
             Obstacle(self.__loader.sprite('obstacle/trap')),
             Obstacle(self.__loader.sprite('obstacle/web')),
         ]
-        self.__obstacle_index = 6
+        self.__obstacle_index = 0
 
     def tick(self):
         for element in self.__obstacles:

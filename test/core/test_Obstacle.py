@@ -1,4 +1,4 @@
-from hex.core.obstacle import Obstacle
+from hex.core.Obstacle import Obstacle
 from hex.core.SpriteLoader import Sprite
 
 def test_element_has_first_frame():
