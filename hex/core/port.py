@@ -8,6 +8,10 @@ class ForControlling(ABC):
         pass
 
     @abstractmethod
+    def close(self):
+        pass
+
+    @abstractmethod
     def frames(self) -> list[str]:
         pass
 

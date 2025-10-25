@@ -10,5 +10,8 @@ class Application(ForControlling):
     def click(self):
         self.__window.fill_background(Color(30, 31, 34))
 
+    def close(self):
+        pass
+
     def frames(self) -> list[str]:
         return self.__loader.sprite('resource').frames

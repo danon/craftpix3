@@ -12,3 +12,5 @@ class PygameController:
         for event in self.__engine.poll_events():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.__controls.click()
+            if event.type == pygame.QUIT:
+                self.__controls.close()

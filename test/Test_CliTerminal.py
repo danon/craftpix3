@@ -16,3 +16,6 @@ class FakeControls(ForControlling):
 
     def frames(self) -> list[str]:
         return self.__frames
+
+    def close(self):
+        pass

@@ -18,6 +18,9 @@ class PygameEngine:
     def click(self):
         pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN))
 
+    def close(self):
+        pygame.event.post(pygame.event.Event(pygame.QUIT))
+
     def poll_events(self) -> Iterable[Event]:
         return pygame.event.get()
 

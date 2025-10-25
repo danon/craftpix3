@@ -15,6 +15,13 @@ class Test_PygameController:
         controller.send_controls()
         assert game.clicks == 1
 
+    def test_closing_window__closes_application(self, engine: PygameEngine):
+        spy = SpyGame()
+        controller = PygameController(engine, spy)
+        engine.close()
+        controller.send_controls()
+        assert spy.closed
+
 class ClickCountingGame(ForControlling):
     def __init__(self):
         self.clicks = 0
@@ -24,3 +31,19 @@ class ClickCountingGame(ForControlling):
 
     def frames(self) -> list[str]:
         return []
+
+    def close(self):
+        pass
+
+class SpyGame(ForControlling):
+    def __init__(self):
+        self.closed = False
+
+    def frames(self) -> list[str]:
+        pass
+
+    def close(self):
+        self.closed = True
+
+    def click(self):
+        pass

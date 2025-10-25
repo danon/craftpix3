@@ -20,4 +20,3 @@ if __name__ == '__main__':
 
 # TODO
 # - game ticks and updates the element
-# - quit game
