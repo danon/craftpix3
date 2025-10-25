@@ -13,10 +13,11 @@ class Application(ForRunningGame):
         self.__frames = frames
 
     def tick(self):
+        self.__window.fill_background(Color(30, 31, 34))
         self.__frames.render_frames(self.frames())
 
     def click(self):
-        self.__window.fill_background(Color(30, 31, 34))
+        pass
 
     def frames(self) -> list[str]:
         return self.__loader.sprite('resource').frames

@@ -13,10 +13,10 @@ def test_renders_frame_from_file_system():
         'resource/frame2.png',
     ]
 
-def test_clicking_renders_background():
+def test_on_tick_renders_background():
     window = SpyWindow()
     game: ForRunningGame = Application(window, FakeFileSystem([]), NoRender())
-    game.click()
+    game.tick()
     assert window.background == Color(30, 31, 34)
 
 def test_on_tick_renders_frame():
