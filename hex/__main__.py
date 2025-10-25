@@ -9,7 +9,7 @@ from hex.PygameWindow import PygameWindow
 
 def main(test_mode: bool):
     root = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'resource')
-    engine = PygameEngine(test_mode)
+    engine = PygameEngine(640, 480, test_mode)
     app = Application(
         PygameWindow(engine),
         OsFileSystem(root))

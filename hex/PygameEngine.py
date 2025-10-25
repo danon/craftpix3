@@ -8,14 +8,14 @@ from pygame.time import Clock
 from hex.core.Color import Color
 
 class PygameEngine:
-    def __init__(self, test_mode: bool):
+    def __init__(self, width: int, height: int, test_mode: bool):
         self.__test_mode = test_mode
         self.__clock = Clock()
         pygame.init()
         if test_mode:
-            self.screen = Surface((640, 480))
+            self.screen = Surface((width, height))
         else:
-            self.screen = pygame.display.set_mode((640, 480))
+            self.screen = pygame.display.set_mode((width, height))
 
     def flip(self):
         if not self.__test_mode:
