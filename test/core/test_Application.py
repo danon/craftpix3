@@ -16,24 +16,14 @@ def test_on_first_tick_renders_first_frame():
     game.tick()
     assert spy.frames == ['/root/lightning/frame1.png']
 
-def test_on_next_tick_renders_next_frame():
+def test_on_click_initiated_the_animation():
     spy = SpyWindow()
     game: ForRunningGame = Application(
         spy,
         FakeFileSystem(['frame1.png', 'frame2.png']))
-    game.tick()
+    game.click()
     game.tick()
     assert spy.frames == ['/root/lightning/frame2.png']
-
-def test_ticks_cycle_frames():
-    spy = SpyWindow()
-    game: ForRunningGame = Application(
-        spy,
-        FakeFileSystem(['frame1.png', 'frame2.png']))
-    game.tick()
-    game.tick()
-    game.tick()
-    assert spy.frames == ['/root/lightning/frame1.png']
 
 def test_application_notifies_window_about_finishing():
     spy = SpyWindow()

@@ -22,6 +22,3 @@ def main(test_mode: bool):
 
 if __name__ == '__main__':
     main(False)
-
-# TODO
-# - game updates the element
