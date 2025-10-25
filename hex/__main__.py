@@ -15,12 +15,13 @@ def main():
     app = Application(
         PygameWindow(engine),
         OsFileSystem(root),
-        PygameController(engine))
-    GameLoop(app, QuitAfterPolls(100)).start()
-    CliTerminal(app).print()
+        PygameController(engine),
+        CliTerminal())
+    GameLoop(QuitAfterPolls(50), app).start()
 
 if __name__ == '__main__':
     main()
 
 # TODO
-# - game ticks and updates the element
+# - game updates the element
+# - actually render a window

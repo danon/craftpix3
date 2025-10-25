@@ -4,17 +4,17 @@ from hex.QuitAfterPolls import QuitAfterPolls
 
 def test_game_loop__does_not_tick():
     game = TickCountingGame()
-    GameLoop(game, FakeInput())
+    GameLoop(FakeInput(), game)
     assert game.ticks == 0
 
 def test_game_loop_ticks_game():
     game = TickCountingGame()
-    GameLoop(game, FakeInput()).tick()
+    GameLoop(FakeInput(), game).tick()
     assert game.ticks == 1
 
 def test_game_loop_ticks__until_is_quit():
     game = TickCountingGame()
-    loop = GameLoop(game, QuitAfterPolls(3))
+    loop = GameLoop(QuitAfterPolls(3), game)
     loop.start()
     assert game.ticks == 3
 

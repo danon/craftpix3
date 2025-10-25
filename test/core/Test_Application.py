@@ -1,11 +1,12 @@
 from hex.core.Application import Application
 from hex.core.Color import Color
-from hex.core.port import ForReadingSpriteFiles, ForReadingUserInput, ForRenderingView, ForRunningGame, WindowEvent
+from hex.core.port import ForReadingSpriteFiles, ForReadingUserInput, ForRenderingFrames, ForRenderingView, ForRunningGame, WindowEvent
+from hex.NoRender import NoRender
 
 def test():
     game: ForRunningGame = Application(SpyWindow(), FakeFileSystem([
         'frame1.png', 'frame2.png'
-    ]), WindowEvents([]))
+    ]), WindowEvents([]), NoRender())
     assert game.frames() == [
         'resource/frame1.png',
         'resource/frame2.png',
@@ -16,9 +17,20 @@ def test_clicking_renders_background():
     game: ForRunningGame = Application(
         window,
         FakeFileSystem([]),
-        WindowEvents([WindowEvent.Click]))
+        WindowEvents([WindowEvent.Click]),
+        NoRender())
     game.tick()
     assert window.background == Color(30, 31, 34)
+
+def test_on_tick_renders_frame():
+    spy = SpyRender()
+    game: ForRunningGame = Application(
+        SpyWindow(),
+        FakeFileSystem(['frame1.png']),
+        WindowEvents([]),
+        spy)
+    game.tick()
+    assert spy.frames == ['resource/frame1.png']
 
 class SpyWindow(ForRenderingView):
     def __init__(self):
@@ -43,3 +55,10 @@ class WindowEvents(ForReadingUserInput):
 
     def poll_events(self) -> list[WindowEvent]:
         return self.__events
+
+class SpyRender(ForRenderingFrames):
+    def __init__(self):
+        self.frames = None
+
+    def render_frames(self, frames: list[str]):
+        self.frames = frames

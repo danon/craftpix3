@@ -1,5 +1,5 @@
 from hex.core.port import ForRenderingFrames
 
-class CliTerminal(ForRenderingFrames):
+class NoRender(ForRenderingFrames):
     def render_frames(self, frames: list[str]):
-        print(frames)
+        pass

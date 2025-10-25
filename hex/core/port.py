@@ -34,3 +34,8 @@ class ForRenderingView(ABC):
     @abstractmethod
     def fill_background(self, color: Color):
         pass
+
+class ForRenderingFrames(ABC):
+    @abstractmethod
+    def render_frames(self, frames: list[str]):
+        pass
