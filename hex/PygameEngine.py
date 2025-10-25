@@ -3,12 +3,14 @@ from typing import Iterable
 import pygame
 from pygame import Surface
 from pygame.event import Event
+from pygame.time import Clock
 
 from hex.core.Color import Color
 
 class PygameEngine:
     def __init__(self, test_mode: bool):
         self.__test_mode = test_mode
+        self.__clock = Clock()
         pygame.init()
         if test_mode:
             self.screen = Surface((640, 480))
@@ -18,6 +20,7 @@ class PygameEngine:
     def flip(self):
         if not self.__test_mode:
             pygame.display.flip()
+            self.__clock.tick(24)
 
     def pixel_color(self, x: int, y: int) -> Color:
         color = self.screen.get_at((x, y))

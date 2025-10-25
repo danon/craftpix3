@@ -4,26 +4,42 @@ from hex.core.port import ForReadingSpriteFiles, ForRenderingFrames, ForRenderin
 
 def test_on_tick_renders_background():
     window = SpyWindow()
-    game: ForRunningGame = Application(window, FakeFileSystem([]))
+    game: ForRunningGame = Application(window, dummy_file_system())
     game.tick()
     assert window.background == Color(30, 31, 34)
 
-def test_on_tick_renders_frame():
+def test_on_first_tick_renders_first_frame():
     spy = SpyWindow()
     game: ForRunningGame = Application(
         spy,
         FakeFileSystem(['frame1.png', 'frame2.png']))
     game.tick()
-    assert spy.frames == [
-        '/root/lightning/frame1.png',
-        '/root/lightning/frame2.png'
-    ]
+    assert spy.frames == ['/root/lightning/frame1.png']
+
+def test_on_next_tick_renders_next_frame():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(
+        spy,
+        FakeFileSystem(['frame1.png', 'frame2.png']))
+    game.tick()
+    game.tick()
+    assert spy.frames == ['/root/lightning/frame2.png']
+
+def test_ticks_cycle_frames():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(
+        spy,
+        FakeFileSystem(['frame1.png', 'frame2.png']))
+    game.tick()
+    game.tick()
+    game.tick()
+    assert spy.frames == ['/root/lightning/frame1.png']
 
 def test_application_notifies_window_about_finishing():
     spy = SpyWindow()
     game: ForRunningGame = Application(
         spy,
-        FakeFileSystem([]))
+        dummy_file_system())
     game.tick()
     assert spy.renders == 1
 
@@ -35,12 +51,16 @@ class SpyWindow(ForRenderingView):
 
     def fill_background(self, color: Color):
         self.background = color
+        self.frames = []
 
     def draw_frame(self, path: str) -> None:
         self.frames.append(path)
 
     def render_finish(self):
         self.renders += 1
+
+def dummy_file_system() -> ForReadingSpriteFiles:
+    return FakeFileSystem(['dummy.png'])
 
 class FakeFileSystem(ForReadingSpriteFiles):
     def __init__(self, files: list[str]):
