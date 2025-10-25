@@ -20,7 +20,7 @@ class PygameEngine:
     def flip(self):
         if not self.__test_mode:
             pygame.display.flip()
-            self.__clock.tick(24)
+            self.__clock.tick(20)
 
     def pixel_color(self, x: int, y: int) -> Color:
         color = self.screen.get_at((x, y))
