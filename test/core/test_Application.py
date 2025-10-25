@@ -25,6 +25,9 @@ class SpyWindow(ForRenderingView):
     def fill_background(self, color: Color):
         self.background = color
 
+    def draw_frame(self, path: str) -> None:
+        pass
+
 class FakeFileSystem(ForReadingSpriteFiles):
     def __init__(self, files: list[str]):
         self.__files = files

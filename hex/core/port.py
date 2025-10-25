@@ -35,6 +35,10 @@ class ForRenderingView(ABC):
     def fill_background(self, color: Color):
         pass
 
+    @abstractmethod
+    def draw_frame(self, path: str) -> None:
+        pass
+
 class ForRenderingFrames(ABC):
     @abstractmethod
     def render_frames(self, frames: list[str]):

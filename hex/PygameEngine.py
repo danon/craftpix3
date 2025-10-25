@@ -24,5 +24,8 @@ class PygameEngine:
     def poll_events(self) -> Iterable[Event]:
         return pygame.event.get()
 
+    def capture(self, filename: str):
+        pygame.image.save(self.screen, filename)
+
     def stop(self):
         pygame.quit()
