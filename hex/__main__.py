@@ -5,11 +5,14 @@ from hex.core.Application import Application
 from hex.OsFileSystem import OsFileSystem
 from hex.PygameController import PygameController
 from hex.PygameEngine import PygameEngine
+from hex.PygameWindow import PygameWindow
 
 def main():
     root = os.path.dirname(os.path.dirname(__file__))
     app = Application(OsFileSystem(root))
-    PygameController(PygameEngine(), app).send_controls()
+    engine = PygameEngine()
+    PygameController(engine, app).send_controls()
+    PygameWindow(engine)
     CliTerminal(app).print()
 
 if __name__ == '__main__':
@@ -17,5 +20,4 @@ if __name__ == '__main__':
 
 # TODO
 # - game ticks and updates the element
-# - pygame renders background and the frame of the element
 # - quit game

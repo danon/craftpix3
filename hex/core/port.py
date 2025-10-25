@@ -17,3 +17,8 @@ class ForReadingSpriteFiles(ABC):
     @abstractmethod
     def list_files(self, path: str) -> list[str]:
         pass
+
+class ForRenderingView(ABC):
+    @abstractmethod
+    def fill_background(self, r: int, g: int, b: int):
+        pass

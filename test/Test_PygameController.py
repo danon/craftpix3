@@ -1,16 +1,6 @@
-from typing import Generator
-
-from pytest import fixture
-
 from hex.core.port import ForControlling
 from hex.PygameController import PygameController
 from hex.PygameEngine import PygameEngine
-
-@fixture
-def engine() -> Generator[PygameEngine]:
-    engine = PygameEngine()
-    yield engine
-    engine.stop()
 
 class Test_PygameController:
     def test_not_direct_click_when_mouse_is_not_down(self, engine: PygameEngine):
