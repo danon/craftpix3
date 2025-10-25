@@ -15,8 +15,8 @@ def main():
     app = Application(
         PygameWindow(engine),
         OsFileSystem(root),
-        PygameController(engine),
         CliTerminal())
+    PygameController(engine)
     GameLoop(QuitAfterPolls(50), app).start()
 
 if __name__ == '__main__':

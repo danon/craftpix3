@@ -9,6 +9,10 @@ class ForRunningGame(ABC):
         pass
 
     @abstractmethod
+    def click(self):
+        pass
+
+    @abstractmethod
     def frames(self) -> list[str]:
         pass
 
