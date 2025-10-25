@@ -16,4 +16,4 @@ class SpriteLoader:
         ])
 
     def abs_path(self, path: str) -> str:
-        return self.__fs.root() + '/resource/' + path
+        return self.__fs.root() + '/' + path

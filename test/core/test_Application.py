@@ -16,7 +16,10 @@ def test_on_tick_renders_frame():
         FakeFileSystem(['frame1.png', 'frame2.png']),
         spy)
     game.tick()
-    assert spy.frames == ['resource/frame1.png', 'resource/frame2.png']
+    assert spy.frames == [
+        '/root/lightning/frame1.png',
+        '/root/lightning/frame2.png'
+    ]
 
 class SpyWindow(ForRenderingView):
     def __init__(self):

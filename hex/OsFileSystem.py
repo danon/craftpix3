@@ -15,4 +15,4 @@ class OsFileSystem(ForReadingSpriteFiles):
         return result
 
     def root(self) -> str:
-        pass
+        return self.__root

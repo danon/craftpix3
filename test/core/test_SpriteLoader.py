@@ -17,7 +17,7 @@ def test_files_are_listed_from_sprite_directory():
 def test_abs_path():
     sprite_loader = SpriteLoader(FakeFs('/root', []))
     path = sprite_loader.abs_path('sprite/obstacle/rock/frame1.png')
-    assert path == '/root/resource/sprite/obstacle/rock/frame1.png'
+    assert path == '/root/sprite/obstacle/rock/frame1.png'
 
 class SpyFs(ForReadingSpriteFiles):
     def __init__(self):
