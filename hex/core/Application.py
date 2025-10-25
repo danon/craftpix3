@@ -33,30 +33,31 @@ class Application(ForRunningGame):
             Obstacle(self.__loader.sprite('obstacle/web')),
         ]
         self.__obstacle_index = 0
+        families = ['castle', 'dungeon', 'forrest', 'mountain']
+        items = ['arrow', 'coin', 'crystal', 'heart', 'hit_point', 'star']
         self.__collectibles = [
-            Collectible(self.__loader.sprite('collect/castle/arrow')),
-            Collectible(self.__loader.sprite('collect/castle/coin')),
-            Collectible(self.__loader.sprite('collect/castle/crystal')),
-            Collectible(self.__loader.sprite('collect/castle/heart')),
-            Collectible(self.__loader.sprite('collect/castle/hit_point')),
-            Collectible(self.__loader.sprite('collect/castle/star')),
+            [
+                Collectible(self.__loader.sprite(f'collect/{family}/{item}'))
+                for item in items
+            ]
+            for family in families
         ]
 
     def tick(self):
         for obstacle in self.__obstacles:
             obstacle.tick()
-        for collectible in self.__collectibles:
-            collectible.tick()
+        for family in self.__collectibles:
+            for collectible in family:
+                collectible.tick()
         self.__window.fill_background(Color(30, 31, 34))
         self.__window.draw_frame(
             self.__loader.abs_path(self.__current_obstacle().frame()),
-            0, 0,
-        )
-        for index, collectible in enumerate(self.__collectibles):
-            self.__window.draw_frame(
-                self.__loader.abs_path(collectible.frame()),
-                index * 32, 0,
-            )
+            0, 0)
+        for fam_index, family in enumerate(self.__collectibles):
+            for index, collectible in enumerate(family):
+                self.__window.draw_frame(
+                    self.__loader.abs_path(collectible.frame()),
+                    index * 32, fam_index * 32)
         self.__window.render_finish()
         self.__ticks += 1
 
