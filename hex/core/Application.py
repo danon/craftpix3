@@ -2,6 +2,7 @@ from hex.core.Color import Color
 from hex.core.Obstacle import Obstacle
 from hex.core.port import ForReadingSpriteFiles, ForRenderingView, ForRunningGame
 from hex.core.SpriteLoader import SpriteLoader
+from test.core.test_Collectible import Collectible
 
 class Application(ForRunningGame):
     def __init__(self, window: ForRenderingView, fs: ForReadingSpriteFiles):
@@ -32,13 +33,26 @@ class Application(ForRunningGame):
             Obstacle(self.__loader.sprite('obstacle/web')),
         ]
         self.__obstacle_index = 0
+        self.__collectibles = [
+            Collectible(self.__loader.sprite('collect/castle/arrow')),
+            Collectible(self.__loader.sprite('collect/castle/coin')),
+            Collectible(self.__loader.sprite('collect/castle/crystal')),
+            Collectible(self.__loader.sprite('collect/castle/heart')),
+            Collectible(self.__loader.sprite('collect/castle/hit_point')),
+            Collectible(self.__loader.sprite('collect/castle/star')),
+        ]
 
     def tick(self):
-        for element in self.__obstacles:
-            element.tick()
+        for obstacle in self.__obstacles:
+            obstacle.tick()
+        for collectible in self.__collectibles:
+            collectible.tick()
         self.__window.fill_background(Color(30, 31, 34))
         self.__window.draw_frame(
             self.__loader.abs_path(self.__current_obstacle().frame())
+        )
+        self.__window.draw_frame(
+            self.__loader.abs_path(self.__collectibles[0].frame())
         )
         self.__window.render_finish()
         self.__ticks += 1
