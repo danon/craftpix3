@@ -1,5 +1,7 @@
+from pytest import raises
+
 from hex.core.port import ForReadingSpriteFiles
-from hex.core.SpriteLoader import SpriteLoader
+from hex.core.SpriteLoader import Frame, SpriteLoader
 
 def test_frames_are_loaded_from_fs():
     sprite_loader = SpriteLoader(FakeFs('/', ['frame1.png', 'frame2.png']))
@@ -18,6 +20,29 @@ def test_abs_path():
     sprite_loader = SpriteLoader(FakeFs('/root', []))
     path = sprite_loader.abs_path('sprite/obstacle/rock/frame1.png')
     assert path == '/root/sprite/obstacle/rock/frame1.png'
+
+def test_frame_index_is_last_number_before_extension():
+    frame = Frame('foo/bar/sprite14.png')
+    assert frame.index() == 14
+
+def test_frame_without_index_raises():
+    frame = Frame('foo/bar/sprite.png')
+    with raises(Exception) as exception:
+        frame.index()
+    assert str(exception.value) == 'Failed to parse sprite frame filename: sprite.png'
+
+def test_files_are_iterated_by_their_number():
+    sprite_loader = SpriteLoader(FakeFs('/', [
+        'frame1.png',
+        'frame10.png',
+        'frame2.png',
+    ]))
+    sprite = sprite_loader.sprite('sprite/obstacle/rock')
+    assert sprite.frames == [
+        'sprite/obstacle/rock/frame1.png',
+        'sprite/obstacle/rock/frame2.png',
+        'sprite/obstacle/rock/frame10.png',
+    ]
 
 class SpyFs(ForReadingSpriteFiles):
     def __init__(self):

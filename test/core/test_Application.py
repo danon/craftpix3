@@ -50,7 +50,7 @@ class SpyWindow(ForRenderingView):
         self.renders += 1
 
 def dummy_file_system() -> ForReadingSpriteFiles:
-    return FakeFileSystem(['dummy.png'])
+    return FakeFileSystem(['dummy1.png'])
 
 class FakeFileSystem(ForReadingSpriteFiles):
     def __init__(self, files: list[str]):
