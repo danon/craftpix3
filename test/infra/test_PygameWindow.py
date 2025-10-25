@@ -14,11 +14,22 @@ def test_background(engine: PygameEngine):
 def test_renders_frame_on_background(engine: PygameEngine):
     render: ForRenderingView = PygameWindow(engine)
     render.fill_background(Color(255, 255, 34))
-    render.draw_frame(res('sprite.png'))
-    engine.capture(res('actual.png'))
+    render.draw_frame(res('1.sprite.png'), 0, 0)
+    engine.capture(res('1.actual.png'))
     assert images_equal(
-        res('actual.png'),
-        res('expected.png'))
+        res('1.actual.png'),
+        res('1.expected.png'))
+
+def test_renders_frames_next_to_each_other(engine: PygameEngine):
+    render: ForRenderingView = PygameWindow(engine)
+    render.fill_background(Color(255, 255, 34))
+    render.draw_frame(res('2.sprite.png'), 0, 0)
+    render.draw_frame(res('2.sprite.png'), 32, 64)
+    render.draw_frame(res('2.sprite.png'), 64, 128)
+    engine.capture(res('2.actual.png'))
+    assert images_equal(
+        res('2.actual.png'),
+        res('2.expected.png'))
 
 def images_equal(actual: str, expected: str) -> bool:
     with open(actual, mode='rb') as a:

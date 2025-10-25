@@ -49,11 +49,14 @@ class Application(ForRunningGame):
             collectible.tick()
         self.__window.fill_background(Color(30, 31, 34))
         self.__window.draw_frame(
-            self.__loader.abs_path(self.__current_obstacle().frame())
+            self.__loader.abs_path(self.__current_obstacle().frame()),
+            0, 0,
         )
-        self.__window.draw_frame(
-            self.__loader.abs_path(self.__collectibles[0].frame())
-        )
+        for index, collectible in enumerate(self.__collectibles):
+            self.__window.draw_frame(
+                self.__loader.abs_path(collectible.frame()),
+                index * 32, 0,
+            )
         self.__window.render_finish()
         self.__ticks += 1
 

@@ -14,10 +14,8 @@ def test_on_first_tick_renders_first_frame():
         spy,
         FakeFileSystem(['frame1.png', 'frame2.png']))
     game.tick()
-    assert spy.frames == [
-        '/root/obstacle/lightning/frame1.png',
-        '/root/collect/castle/arrow/frame2.png',
-    ]
+    assert '/root/obstacle/lightning/frame1.png' in spy.frames
+    assert '/root/collect/castle/arrow/frame2.png' in spy.frames
 
 def test_on_click_initiated_the_animation():
     spy = SpyWindow()
@@ -26,10 +24,8 @@ def test_on_click_initiated_the_animation():
         FakeFileSystem(['frame1.png', 'frame2.png']))
     game.click()
     game.tick()
-    assert spy.frames == [
-        '/root/obstacle/lightning/frame2.png',
-        '/root/collect/castle/arrow/frame2.png',
-    ]
+    assert '/root/obstacle/lightning/frame2.png' in spy.frames
+    assert '/root/collect/castle/arrow/frame2.png' in spy.frames
 
 def test_application_notifies_window_about_finishing():
     spy = SpyWindow()
@@ -49,7 +45,7 @@ class SpyWindow(ForRenderingView):
         self.background = color
         self.frames = []
 
-    def draw_frame(self, path: str) -> None:
+    def draw_frame(self, path: str, x: int, y: int) -> None:
         self.frames.append(path)
 
     def render_finish(self):

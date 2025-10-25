@@ -46,7 +46,7 @@ class ForRenderingView(ABC):
         pass
 
     @abstractmethod
-    def draw_frame(self, path: str) -> None:
+    def draw_frame(self, path: str, x: int, y: int) -> None:
         pass
 
     @abstractmethod
