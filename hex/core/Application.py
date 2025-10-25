@@ -126,33 +126,33 @@ class Application(ForRunningGame):
             for family in hero_projectile_families
         ]
         monster_families = [
-            'melee/animal_snake',
-            'melee/animal_bear',
-            'ranged/animal_spider',
-            'ranged/minion_skull_fire',
-            'melee/minion_wraith',
-            'ranged/minion_eye',
             'melee/lizard_yellow',
             'ranged/lizard_red',
             'ranged/lizard_purple',
-            'melee/dragon_skeleton',
-            'melee/dragon_orange',
-            'ranged/dragon_purple',
+            'melee/animal_bear',
+            'ranged/animal_spider',
+            'melee/minion_wraith',
+            'ranged/minion_eye',
+            'ranged/warrior_jinn',
+            'melee/goblin_snow',
+            'melee/goblin_green',
+            'melee/minion_person2',
             'ranged/warrior_vampire',
+            'melee/warrior_skeleton',
+            'melee/creature_ent',
+            'melee/creature_troll',
+            'ranged/minion_skull_fire',
+            'ranged/goblin_fire',
+            'melee/goblin_yellow',
+            'melee/goblin_dark',
+            'melee/minion_person1',
             'melee/warrior_bident',
             'melee/warrior_axe_fire',
             'melee/warrior_axe',
-            'melee/warrior_skeleton',
-            'ranged/warrior_jinn',
-            'ranged/goblin_fire',
-            'melee/goblin_snow',
-            'melee/goblin_yellow',
-            'melee/goblin_dark',
-            'melee/goblin_green',
-            'melee/minion_person1',
-            'melee/minion_person2',
-            'melee/creature_ent',
-            'melee/creature_troll',
+            'melee/dragon_skeleton',
+            'melee/dragon_orange',
+            'ranged/dragon_purple',
+            'melee/animal_snake',
         ]
         monster_stance = ['attack', 'death', 'hurt', 'idle', 'walk']
         self.__monsters = [
@@ -192,16 +192,26 @@ class Application(ForRunningGame):
         self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[1].frame()), 128, 128 + 512)
         self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[2].frame()), 128, 256 + 64 + 512)
 
+        cut_point = 13
         for index, monster in enumerate(self.__monsters):
-            col = index % 3
-            row = index // 3
+            col = index % 2
+            row = index // 2
+            if index < cut_point:
+                x = 512 + 256 + (128 * col)
+                y = row * 128
+            else:
+                new_index = index - cut_point
+                col = new_index % 4
+                row = new_index // 4
+                x = 512 + 512 + (256 * col)
+                y = row * 256
+
             self.__window.draw_frame(
                 self.__loader.abs_path(self.__current_monster_stance(index).frame()),
-                512 + 128 + ((256 + 128) * col),
-                row * (64 + 64 - 16))
+                x, y)
 
         for index, hero in enumerate(self.__heroes):
-            self.__window.draw_frame(self.__loader.abs_path(hero[self.__hero_index].frame()), 512 - 128, index * (64 + 16))
+            self.__window.draw_frame(self.__loader.abs_path(hero[self.__hero_index].frame()), 512 - 128, index * (64 + 32))
 
         for fam_index, family in enumerate(self.__hero_mage_projectiles):
             for index, collectible in enumerate(family):
