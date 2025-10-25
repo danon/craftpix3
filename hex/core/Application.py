@@ -14,6 +14,7 @@ class Application(ForRunningGame):
 
     def tick(self):
         self.__window.fill_background(Color(30, 31, 34))
+        self.__window.render_finish()
         self.__frames.render_frames([
             self.__loader.abs_path(frame)
             for frame

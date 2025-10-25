@@ -21,15 +21,28 @@ def test_on_tick_renders_frame():
         '/root/lightning/frame2.png'
     ]
 
+def test_application_notifies_window_about_finishing():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(
+        spy,
+        FakeFileSystem([]),
+        SpyRender())
+    game.tick()
+    assert spy.renders == 1
+
 class SpyWindow(ForRenderingView):
     def __init__(self):
         self.background = None
+        self.renders = 0
 
     def fill_background(self, color: Color):
         self.background = color
 
     def draw_frame(self, path: str) -> None:
         pass
+
+    def render_finish(self):
+        self.renders += 1
 
 class FakeFileSystem(ForReadingSpriteFiles):
     def __init__(self, files: list[str]):

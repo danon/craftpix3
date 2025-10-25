@@ -13,3 +13,6 @@ class PygameWindow(ForRenderingView):
 
     def draw_frame(self, path: str) -> None:
         self.__engine.screen.blit(pygame.image.load(path), (0, 0))
+
+    def render_finish(self):
+        pass

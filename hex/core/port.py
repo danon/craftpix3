@@ -39,6 +39,10 @@ class ForRenderingView(ABC):
     def draw_frame(self, path: str) -> None:
         pass
 
+    @abstractmethod
+    def render_finish(self):
+        pass
+
 class ForRenderingFrames(ABC):
     @abstractmethod
     def render_frames(self, frames: list[str]):
