@@ -4,9 +4,9 @@ from dataclasses import dataclass
 
 from hex.core.port import ForReadingSpriteFiles
 
+@dataclass
 class Sprite:
-    def __init__(self, frames: list[str]):
-        self.frames = frames
+    frames: list[str]
 
 @dataclass
 class Frame:
