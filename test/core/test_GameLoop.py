@@ -25,18 +25,27 @@ def test_game_loop_directs_click_to_game():
 
 def test_game_loop_directs_arrows_to_game():
     game = EventStoringGame()
-    GameLoop(WindowEvents([WindowEvent.Right, WindowEvent.Left]), game).tick()
-    assert game.events == ['right', 'left']
+    user_input = WindowEvents([
+        WindowEvent.RightDown,
+        WindowEvent.LeftDown,
+        WindowEvent.RightUp,
+        WindowEvent.LeftUp,
+    ])
+    GameLoop(user_input, game).tick()
+    assert game.events == [
+        'right down', 'left down',
+        'right up', 'left up'
+    ]
 
 class EventStoringGame(ForRunningGame):
     def __init__(self):
         self.events = []
 
-    def left(self):
-        self.events.append('left')
+    def left(self, active: bool):
+        self.events.append('left down' if active else 'left up')
 
-    def right(self):
-        self.events.append('right')
+    def right(self, active: bool):
+        self.events.append('right down' if active else 'right up')
 
     def click(self):
         self.events.append('click')
@@ -54,10 +63,10 @@ class TickCountingGame(ForRunningGame):
     def click(self):
         pass
 
-    def left(self):
+    def left(self, active: bool):
         pass
 
-    def right(self):
+    def right(self, active: bool):
         pass
 
 class FakeInput(ForReadingUserInput):

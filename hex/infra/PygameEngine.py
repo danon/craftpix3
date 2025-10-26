@@ -30,11 +30,20 @@ class PygameEngine:
     def click(self):
         pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN))
 
-    def right(self):
-        pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_RIGHT}))
+    def right_down(self):
+        self.__post_key(pygame.KEYDOWN, pygame.K_RIGHT)
 
-    def left(self):
-        pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_LEFT}))
+    def right_up(self):
+        self.__post_key(pygame.KEYUP, pygame.K_RIGHT)
+
+    def left_down(self):
+        self.__post_key(pygame.KEYDOWN, pygame.K_LEFT)
+
+    def left_up(self):
+        self.__post_key(pygame.KEYUP, pygame.K_LEFT)
+
+    def __post_key(self, event_type: int, key: int):
+        pygame.event.post(pygame.event.Event(event_type, {'key': key}))
 
     def close(self):
         pygame.event.post(pygame.event.Event(pygame.QUIT))

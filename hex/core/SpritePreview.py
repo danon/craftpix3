@@ -245,14 +245,14 @@ class SpritePreview(ForRunningGame):
         for element in self.__obstacles:
             element.initiate()
 
-    def left(self):
+    def left(self, active: bool):
         self.__obstacle_index -= 1
         self.__magic_effects_index -= 1
         self.__boss_index -= 1
         self.__hero_index -= 1
         self.__monster_index -= 1
 
-    def right(self):
+    def right(self, active: bool):
         self.__obstacle_index = (self.__obstacle_index + 1) % len(self.__obstacles)
         self.__magic_effects_index = (self.__magic_effects_index + 1) % len(self.__magic_effects)
         self.__boss_index = (self.__boss_index + 1) % len(self.__bosses[0])

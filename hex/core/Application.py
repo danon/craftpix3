@@ -14,10 +14,10 @@ class Application(ForRunningGame):
         self.hero_idle = self.__loader.sprite(f'hero/knight1/idle')
         self.game_world = GameWorld()
 
-    def right(self):
+    def right(self, active: bool):
         self.game_world.player_move_right()
 
-    def left(self):
+    def left(self, active: bool):
         self.game_world.player_move_left()
 
     def click(self):

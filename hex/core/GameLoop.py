@@ -16,11 +16,16 @@ class GameLoop:
 
     def __poll_events(self) -> None:
         for event in self.__input.poll_events():
-            if event == WindowEvent.Close:
-                self.__is_running = False
-            if event == WindowEvent.Click:
-                self.__game.click()
-            if event == WindowEvent.Left:
-                self.__game.left()
-            if event == WindowEvent.Right:
-                self.__game.right()
+            match event:
+                case WindowEvent.Close:
+                    self.__is_running = False
+                case WindowEvent.Click:
+                    self.__game.click()
+                case WindowEvent.LeftDown:
+                    self.__game.left(True)
+                case WindowEvent.RightDown:
+                    self.__game.right(True)
+                case WindowEvent.LeftUp:
+                    self.__game.left(False)
+                case WindowEvent.RightUp:
+                    self.__game.right(False)

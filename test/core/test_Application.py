@@ -27,13 +27,13 @@ def test_idle_hero_is_rendered():
 def test_hero_has_moved_right():
     spy = SpyWindow()
     game: ForRunningGame = Application(spy, FakeFileSystem(['frame1.png']))
-    game.right()
+    game.right(True)
     game.tick()
     assert Point(1, 0) in spy.frames_pos
 
 def test_hero_has_moved_left():
     spy = SpyWindow()
     game: ForRunningGame = Application(spy, FakeFileSystem(['frame1.png']))
-    game.left()
+    game.left(True)
     game.tick()
     assert Point(-1, 0) in spy.frames_pos
