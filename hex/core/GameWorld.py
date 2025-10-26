@@ -1,3 +1,9 @@
+from enum import Enum
+
+class PlayerStance(Enum):
+    Idle = 0
+    Walk = 1
+
 class GameWorld:
     def __init__(self):
         self.player_x = 0
@@ -12,6 +18,12 @@ class GameWorld:
 
     def tick(self):
         self.player_x += self.__velocity_x()
+
+    @property
+    def player_stance(self) -> PlayerStance:
+        if self.__velocity_x() == 0:
+            return PlayerStance.Idle
+        return PlayerStance.Walk
 
     def __velocity_x(self) -> int:
         if self.__left == self.__right:

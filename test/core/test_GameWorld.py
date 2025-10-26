@@ -1,4 +1,4 @@
-from hex.core.GameWorld import GameWorld
+from hex.core.GameWorld import GameWorld, PlayerStance
 
 def test_player_initially_is_at_x_0():
     world = GameWorld()
@@ -76,3 +76,12 @@ def test_given_incorrectly_sending_up_the_player_does_not_move():
     # then
     world.tick()
     assert world.player_x == 0
+
+def test_given_stationary_player__its_stance_is_idle():
+    world = GameWorld()
+    assert world.player_stance == PlayerStance.Idle
+
+def test_given_a_moving_player__its_stance_is_walk():
+    world = GameWorld()
+    world.player_move_right(True)
+    assert world.player_stance == PlayerStance.Walk

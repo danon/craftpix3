@@ -25,6 +25,9 @@ class SpyWindow(ForRenderingView):
     def frames_pos(self) -> list[Point]:
         return [frame.pos for frame in self.__rendered_frames]
 
+    def draw_text(self, text: str, pos: Point):
+        pass
+
     def render_finish(self):
         self.renders += 1
 

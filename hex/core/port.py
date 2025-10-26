@@ -53,6 +53,10 @@ class ForRenderingView(ABC):
         pass
 
     @abstractmethod
+    def draw_text(self, text: str, pos: Point):
+        pass
+
+    @abstractmethod
     def render_finish(self):
         pass
 

@@ -54,5 +54,27 @@ def test_hero_stops_moving_right_when_key_is_not_active():
     game.tick()
     assert Point(0, 0) in spy.frames_pos
 
+def test_given_hero_is_walking_then_walk_is_rendered():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, dummy_fs())
+    game.right(True)
+    game.tick()
+    assert '/root/hero/knight1/walk/frame1.png' in spy.frames
+
+def test_when_next_tick__then_the_next_frame_is_rendered():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, dummy_fs())
+    game.tick()
+    game.tick()
+    assert '/root/hero/knight1/idle/frame2.png' in spy.frames
+
+def test_ticks_cycle_the_animation():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, dummy_fs())
+    game.tick()
+    game.tick()
+    game.tick()
+    assert '/root/hero/knight1/idle/frame1.png' in spy.frames
+
 def dummy_fs() -> ForReadingSpriteFiles:
-    return FakeFileSystem(['frame1.png'])
+    return FakeFileSystem(['frame1.png', 'frame2.png'])
