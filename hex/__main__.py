@@ -31,3 +31,18 @@ def __app(preview: bool, window: ForRenderingView, fs: ForReadingSpriteFiles) ->
 
 if __name__ == '__main__':
     main(False)
+
+# - families of sprites need to be composed into a figure
+#
+# - different classes of agents have figures with different stances.
+#
+# - some stances are shared between figures (idle, walk, hurt, death, attack)
+#   other are unique per class: cheer, walk attack, run, etc.
+#
+# - projectiles need to be composed into start/cycle/end:
+#   - some can be kept running for a long time,
+#   - some flash and end
+#   - some start, cycle until they hit something, and end.
+#
+# - each sprite would need to know where it's center of mass is:
+#    most sprites are homogenous, but heros death' is larger :/
