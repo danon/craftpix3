@@ -1,6 +1,7 @@
 import pygame
 
 from hex.core.Color import Color, LIGHT_GRAY
+from hex.core.Point import Point
 from hex.core.port import ForRenderingView
 from hex.core.Rect import Rect
 from hex.infra.PygameEngine import PygameEngine
@@ -12,8 +13,8 @@ class PygameWindow(ForRenderingView):
     def fill_background(self, color: Color):
         self.__engine.screen.fill((color.r, color.g, color.b))
 
-    def draw_frame(self, path: str, x: int, y: int) -> None:
-        self.__draw_image_border(x, y, pygame.image.load(path))
+    def draw_frame(self, path: str, pos: Point) -> None:
+        self.__draw_image_border(pos.x, pos.y, pygame.image.load(path))
 
     def __draw_image_border(self, x: int, y: int, image):
         self.__engine.screen.blit(image, (x, y))

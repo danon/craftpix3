@@ -1,4 +1,5 @@
 from hex.core.Color import DARK_GRAY
+from hex.core.Point import Point
 from hex.core.port import ForReadingSpriteFiles, ForRenderingView, ForRunningGame
 from hex.core.SpriteLoader import SpriteLoader
 
@@ -24,5 +25,5 @@ class Application(ForRunningGame):
         self.__window.fill_background(DARK_GRAY)
         self.__window.draw_frame(
             self.__loader.abs_path(self.hero_idle.frames[0]),
-            0, 0)
+            Point(0, 0))
         self.__window.render_finish()

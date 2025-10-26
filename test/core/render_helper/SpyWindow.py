@@ -1,4 +1,5 @@
 from hex.core.Color import Color
+from hex.core.Point import Point
 from hex.core.port import ForRenderingView
 
 class SpyWindow(ForRenderingView):
@@ -11,7 +12,7 @@ class SpyWindow(ForRenderingView):
         self.background = color
         self.frames = []
 
-    def draw_frame(self, path: str, x: int, y: int) -> None:
+    def draw_frame(self, path: str, pos: Point) -> None:
         self.frames.append(path)
 
     def render_finish(self):

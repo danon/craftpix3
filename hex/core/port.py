@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from enum import Enum
 
 from hex.core.Color import Color
+from hex.core.Point import Point
 
 class ForRunningGame(ABC):
     @abstractmethod
@@ -46,7 +47,7 @@ class ForRenderingView(ABC):
         pass
 
     @abstractmethod
-    def draw_frame(self, path: str, x: int, y: int) -> None:
+    def draw_frame(self, path: str, pos: Point) -> None:
         pass
 
     @abstractmethod
