@@ -14,8 +14,13 @@ class PygameWindow(ForRenderingView):
     def fill_background(self, color: Color):
         self.__engine.screen.fill(pc(color))
 
-    def draw_frame(self, path: str, pos: Point) -> None:
-        self.__draw_image_border(pos, pygame.image.load(path))
+    def draw_frame(self, path: str, pos: Point, flipped: bool) -> None:
+        image = pygame.image.load(path)
+        if flipped:
+            flipped_image = pygame.transform.flip(image, True, False)
+        else:
+            flipped_image = image
+        self.__draw_image_border(pos, flipped_image)
 
     def __draw_image_border(self, pos: Point, image):
         self.__engine.screen.blit(image, pp(pos))

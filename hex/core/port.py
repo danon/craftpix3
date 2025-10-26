@@ -49,7 +49,7 @@ class ForRenderingView(ABC):
         pass
 
     @abstractmethod
-    def draw_frame(self, path: str, pos: Point) -> None:
+    def draw_frame(self, path: str, pos: Point, flipped: bool) -> None:
         pass
 
     @abstractmethod

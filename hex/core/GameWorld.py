@@ -9,6 +9,7 @@ class GameWorld:
         self.player_x = 0
         self.__left = False
         self.__right = False
+        self.looks_right = True
 
     def player_move_right(self, active: bool):
         self.__right = active
@@ -17,7 +18,12 @@ class GameWorld:
         self.__left = active
 
     def tick(self):
-        self.player_x += self.__velocity_x()
+        velocity = self.__velocity_x()
+        if velocity > 0:
+            self.looks_right = True
+        if velocity < 0:
+            self.looks_right = False
+        self.player_x += velocity
 
     @property
     def player_stance(self) -> PlayerStance:

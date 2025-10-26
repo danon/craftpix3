@@ -15,7 +15,7 @@ def test_background(engine: PygameEngine):
 def test_renders_frame_on_background(engine: PygameEngine):
     render: ForRenderingView = PygameWindow(engine)
     render.fill_background(Color(255, 255, 34))
-    render.draw_frame(res('1.sprite.png'), Point(0, 0))
+    render.draw_frame(res('1.sprite.png'), Point(0, 0), False)
     engine.capture(res('1.actual.png'))
     assert images_equal(
         res('1.actual.png'),
@@ -24,13 +24,22 @@ def test_renders_frame_on_background(engine: PygameEngine):
 def test_renders_frames_next_to_each_other(engine: PygameEngine):
     render: ForRenderingView = PygameWindow(engine)
     render.fill_background(Color(255, 255, 34))
-    render.draw_frame(res('2.sprite.png'), Point(0, 0))
-    render.draw_frame(res('2.sprite.png'), Point(32, 64))
-    render.draw_frame(res('2.sprite.png'), Point(64, 128))
+    render.draw_frame(res('2.sprite.png'), Point(0, 0), False)
+    render.draw_frame(res('2.sprite.png'), Point(32, 64), False)
+    render.draw_frame(res('2.sprite.png'), Point(64, 128), False)
     engine.capture(res('2.actual.png'))
     assert images_equal(
         res('2.actual.png'),
         res('2.expected.png'))
+
+def test_renders_frame_flipped_horizontally(engine: PygameEngine):
+    render: ForRenderingView = PygameWindow(engine)
+    render.fill_background(Color(255, 255, 34))
+    render.draw_frame(res('3.sprite.png'), Point(0, 0), True)
+    engine.capture(res('3.actual.png'))
+    assert images_equal(
+        res('3.actual.png'),
+        res('3.expected.png'))
 
 def images_equal(actual: str, expected: str) -> bool:
     with open(actual, mode='rb') as a:

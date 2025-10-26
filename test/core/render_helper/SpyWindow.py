@@ -4,6 +4,12 @@ from hex.core.Color import Color
 from hex.core.Point import Point
 from hex.core.port import ForRenderingView
 
+@dataclass
+class RenderedFrame:
+    path: str
+    pos: Point
+    flipped: bool
+
 class SpyWindow(ForRenderingView):
     def __init__(self):
         self.background = None
@@ -14,8 +20,8 @@ class SpyWindow(ForRenderingView):
         self.background = color
         self.__rendered_frames = []
 
-    def draw_frame(self, path: str, pos: Point) -> None:
-        self.__rendered_frames.append(RenderedFrame(path, pos))
+    def draw_frame(self, path: str, pos: Point, flipped: bool) -> None:
+        self.__rendered_frames.append(RenderedFrame(path, pos, flipped))
 
     @property
     def frames(self) -> list[str]:
@@ -25,13 +31,12 @@ class SpyWindow(ForRenderingView):
     def frames_pos(self) -> list[Point]:
         return [frame.pos for frame in self.__rendered_frames]
 
+    @property
+    def last_frame(self) -> RenderedFrame:
+        return self.__rendered_frames[-1]
+
     def draw_text(self, text: str, pos: Point):
         pass
 
     def render_finish(self):
         self.renders += 1
-
-@dataclass
-class RenderedFrame:
-    path: str
-    pos: Point

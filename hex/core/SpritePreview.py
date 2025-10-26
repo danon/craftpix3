@@ -184,14 +184,14 @@ class SpritePreview(ForRunningGame):
         for common in self.__boss_common:
             common.tick()
         self.__window.fill_background(DARK_GRAY)
-        self.__window.draw_frame(self.__loader.abs_path(self.__current_obstacle().frame()), Point(0, 128))
-        self.__window.draw_frame(self.__loader.abs_path(self.__current_magic_effect().frame()), Point(0, 512 - 128))
-        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(0).frame()), Point(0, -64 + 512))
-        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(1).frame()), Point(0, 128 + 512 - 32))
-        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(2).frame()), Point(0, 256 + 64 + 512 - 64))
-        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[0].frame()), Point(128, -64 + 512))
-        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[1].frame()), Point(128, 128 + 512))
-        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[2].frame()), Point(128, 256 + 64 + 512))
+        self.__window.draw_frame(self.__loader.abs_path(self.__current_obstacle().frame()), Point(0, 128), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__current_magic_effect().frame()), Point(0, 512 - 128), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(0).frame()), Point(0, -64 + 512), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(1).frame()), Point(0, 128 + 512 - 32), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__current_boss_stance(2).frame()), Point(0, 256 + 64 + 512 - 64), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[0].frame()), Point(128, -64 + 512), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[1].frame()), Point(128, 128 + 512), False)
+        self.__window.draw_frame(self.__loader.abs_path(self.__boss_common[2].frame()), Point(128, 256 + 64 + 512), False)
 
         cut_point = 13
         for index, monster in enumerate(self.__monsters):
@@ -208,24 +208,24 @@ class SpritePreview(ForRunningGame):
                 y = row * 256
 
             self.__window.draw_frame(
-                self.__loader.abs_path(self.__current_monster_stance(index).frame()), Point(x, y))
+                self.__loader.abs_path(self.__current_monster_stance(index).frame()), Point(x, y), False)
 
         for index, hero in enumerate(self.__heroes):
             self.__window.draw_frame(
                 self.__loader.abs_path(hero[self.__hero_index].frame()),
-                Point(512 - 128, index * (64 + 32)))
+                Point(512 - 128, index * (64 + 32)), False)
 
         for fam_index, family in enumerate(self.__hero_mage_projectiles):
             for index, collectible in enumerate(family):
                 self.__window.draw_frame(
                     self.__loader.abs_path(collectible.frame()),
-                    Point(index * 48 + 512, fam_index * 64 + 256))
+                    Point(index * 48 + 512, fam_index * 64 + 256), False)
 
         for fam_index, family in enumerate(self.__collectibles):
             for index, collectible in enumerate(family):
                 self.__window.draw_frame(
                     self.__loader.abs_path(collectible.frame()),
-                    Point(index * 32, fam_index * 32))
+                    Point(index * 32, fam_index * 32), False)
         self.__window.render_finish()
         self.__ticks += 1
 

@@ -76,5 +76,19 @@ def test_ticks_cycle_the_animation():
     game.tick()
     assert '/root/hero/knight1/idle/frame1.png' in spy.frames
 
+def test_given_player_is_moving_right__frame_is_rendered_normally():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, dummy_fs())
+    game.right(True)
+    game.tick()
+    assert not spy.last_frame.flipped
+
+def test_given_player_is_moving_left__frame_is_rendered_flipped():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, dummy_fs())
+    game.left(True)
+    game.tick()
+    assert spy.last_frame.flipped
+
 def dummy_fs() -> ForReadingSpriteFiles:
     return FakeFileSystem(['frame1.png', 'frame2.png'])

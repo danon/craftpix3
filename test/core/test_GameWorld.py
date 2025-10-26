@@ -85,3 +85,38 @@ def test_given_a_moving_player__its_stance_is_walk():
     world = GameWorld()
     world.player_move_right(True)
     assert world.player_stance == PlayerStance.Walk
+
+def test_player_initially_looks_right():
+    world = GameWorld()
+    assert world.looks_right
+
+def test_player_after_moving_left__player_looks_left():
+    world = GameWorld()
+    world.player_move_left(True)
+    world.tick()
+    assert not world.looks_right
+
+def test_player_after_moving_right__player_looks_right():
+    world = GameWorld()
+    world.player_move_left(True)
+    world.player_move_left(False)
+    world.tick()
+    world.player_move_right(True)
+    world.tick()
+    assert world.looks_right
+
+def test_player_maintains_right_turn():
+    world = GameWorld()
+    world.player_move_right(True)
+    world.tick()
+    world.player_move_right(False)
+    world.tick()
+    assert world.looks_right
+
+def test_player_maintains_left_turn():
+    world = GameWorld()
+    world.player_move_left(True)
+    world.tick()
+    world.player_move_left(False)
+    world.tick()
+    assert not world.looks_right

@@ -33,9 +33,10 @@ class Application(ForRunningGame):
             sprite = self.__hero_idle
         else:
             sprite = self.__hero_walk
-        self.__window.draw_frame(self.__loader.abs_path(
-            sprite.frames[self.__ticks % len(sprite.frames)]
-        ), pos)
+        self.__window.draw_frame(
+            self.__loader.abs_path(sprite.frames[self.__ticks % len(sprite.frames)]),
+            pos,
+            not self.__game_world.looks_right)
         self.__window.draw_text(str(self.__game_world.player_stance), pos)
         self.__window.render_finish()
         self.__ticks += 1
