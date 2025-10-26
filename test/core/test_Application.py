@@ -1,6 +1,7 @@
 from hex.core.Application import Application
 from hex.core.Color import DARK_GRAY
 from hex.core.port import ForRunningGame
+from test.core.render_helper.FakeFileSystem import FakeFileSystem
 from test.core.render_helper.helper import dummy_file_system
 from test.core.render_helper.SpyWindow import SpyWindow
 
@@ -12,8 +13,12 @@ def test_on_tick_renders_background():
 
 def test_application_notifies_window_about_finishing():
     spy = SpyWindow()
-    game: ForRunningGame = Application(
-        spy,
-        dummy_file_system())
+    game: ForRunningGame = Application(spy, dummy_file_system())
     game.tick()
     assert spy.renders == 1
+
+def test_idle_hero_is_rendered():
+    spy = SpyWindow()
+    game: ForRunningGame = Application(spy, FakeFileSystem(['frame1.png']))
+    game.tick()
+    assert '/root/hero/knight1/idle/frame1.png' in spy.frames

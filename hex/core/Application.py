@@ -1,5 +1,6 @@
 from hex.core.Color import DARK_GRAY
 from hex.core.port import ForReadingSpriteFiles, ForRenderingView, ForRunningGame
+from hex.core.SpriteLoader import SpriteLoader
 
 class Application(ForRunningGame):
     def __init__(
@@ -7,7 +8,8 @@ class Application(ForRunningGame):
             window: ForRenderingView,
             fs: ForReadingSpriteFiles):
         self.__window = window
-        self.__fs = fs
+        self.__loader = SpriteLoader(fs)
+        self.hero_idle = self.__loader.sprite(f'hero/knight1/idle')
 
     def right(self):
         pass
@@ -20,4 +22,7 @@ class Application(ForRunningGame):
 
     def tick(self):
         self.__window.fill_background(DARK_GRAY)
+        self.__window.draw_frame(
+            self.__loader.abs_path(self.hero_idle.frames[0]),
+            0, 0)
         self.__window.render_finish()
